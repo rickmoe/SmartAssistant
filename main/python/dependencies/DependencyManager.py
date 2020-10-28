@@ -2,7 +2,9 @@ from main.python.dependencies.memory.MemoryParser import MemoryParser
 from main.python.dependencies.memory.MemoryWriter import MemoryWriter
 from main.python.dependencies.calendar.Calendar import initCalendars, Calendar
 from main.python.dependencies.smartAssistant.SmartAssistant import initSmartAssistants, SmartAssistant
+from main.python.dependencies.timer.Timer import Timer
 from main.python.assistant import Constants
+import threading
 
 class DependencyManager:
 
@@ -13,6 +15,10 @@ class DependencyManager:
         DependencyManager.memoryParser = MemoryParser(Constants.MEMORY_FILE)
         initCalendars(DependencyManager.memoryParser)
         initSmartAssistants(DependencyManager.memoryParser)
+
+    @staticmethod
+    def concludeDependencies():
+        DependencyManager.stopTimers()
 
     @staticmethod
     def getCurrentCalendar():
@@ -41,6 +47,10 @@ class DependencyManager:
     @staticmethod
     def getAssistants():
         return SmartAssistant.getAssistants()
+
+    @staticmethod
+    def getActiveTimers():
+        return Timer.activeTimers
 
     @staticmethod
     def createAssistant(name, speechRate, volume, voice, wakeWords=None):
@@ -87,3 +97,13 @@ class DependencyManager:
     @staticmethod
     def appendToMemorySection(key, values, sectionName):
         MemoryWriter(Constants.MEMORY_FILE).appendToSection(key, values, sectionName)
+
+    @staticmethod
+    def startTimer(hours, minutes, seconds):
+        timer = Timer(hours, minutes, seconds)
+        t = threading.Thread(target=timer.startTimer)
+        t.start()
+
+    @staticmethod
+    def stopTimers():
+        [t.stopTimer() for t in DependencyManager.getActiveTimers()]

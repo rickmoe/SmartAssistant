@@ -13,3 +13,5 @@ while powered:
                 woke = True
     if woke:
         powered = InputParser.parseInput(userInput, DependencyManager.getCurrentAssistant())
+
+DependencyManager.concludeDependencies()

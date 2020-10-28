@@ -11,7 +11,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c8126b4c-ef74-4126-974d-a730ebb14ad3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/main/python/assistant/Main.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/python/dependencies/timer/Timer.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/python/dependencies/timer/TimerTime.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/python/assistant/InputParser.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/python/assistant/InputParser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/python/assistant/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/python/assistant/Main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/python/dependencies/DependencyManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/python/dependencies/DependencyManager.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +34,9 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1ivwv75QKuNrkQzvU1YBfdGfrox" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -38,7 +45,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Main.py" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -95,6 +102,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603081371694">
@@ -109,22 +117,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/-3840.347.1536.848/0.0.1920.1040@0.0.1920.1040" timestamp="1603081336933" />
-    <state width="1899" height="226" key="GridCell.Tab.0.bottom" timestamp="1603774322292">
+    <state width="1899" height="226" key="GridCell.Tab.0.bottom" timestamp="1603861112991">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="226" key="GridCell.Tab.0.bottom/-3840.347.1536.848/0.0.1920.1040@0.0.1920.1040" timestamp="1603774322292" />
-    <state width="1899" height="226" key="GridCell.Tab.0.center" timestamp="1603774322292">
+    <state width="1899" height="226" key="GridCell.Tab.0.bottom/-3840.347.1536.848/0.0.1920.1040@0.0.1920.1040" timestamp="1603861112991" />
+    <state width="1899" height="226" key="GridCell.Tab.0.center" timestamp="1603861112991">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="226" key="GridCell.Tab.0.center/-3840.347.1536.848/0.0.1920.1040@0.0.1920.1040" timestamp="1603774322292" />
-    <state width="1899" height="226" key="GridCell.Tab.0.left" timestamp="1603774322292">
+    <state width="1899" height="226" key="GridCell.Tab.0.center/-3840.347.1536.848/0.0.1920.1040@0.0.1920.1040" timestamp="1603861112991" />
+    <state width="1899" height="226" key="GridCell.Tab.0.left" timestamp="1603861112991">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="226" key="GridCell.Tab.0.left/-3840.347.1536.848/0.0.1920.1040@0.0.1920.1040" timestamp="1603774322292" />
-    <state width="1899" height="226" key="GridCell.Tab.0.right" timestamp="1603774322292">
+    <state width="1899" height="226" key="GridCell.Tab.0.left/-3840.347.1536.848/0.0.1920.1040@0.0.1920.1040" timestamp="1603861112991" />
+    <state width="1899" height="226" key="GridCell.Tab.0.right" timestamp="1603861112991">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="226" key="GridCell.Tab.0.right/-3840.347.1536.848/0.0.1920.1040@0.0.1920.1040" timestamp="1603774322292" />
+    <state width="1899" height="226" key="GridCell.Tab.0.right/-3840.347.1536.848/0.0.1920.1040@0.0.1920.1040" timestamp="1603861112991" />
     <state width="1899" height="348" key="GridCell.Tab.1.bottom" timestamp="1603232394185">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -141,17 +149,32 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state width="1899" height="348" key="GridCell.Tab.1.right/-3840.347.1536.848/0.0.1920.1040@0.0.1920.1040" timestamp="1603232394185" />
-    <state x="461" y="165" key="SettingsEditor" timestamp="1603766412977">
+    <state x="461" y="165" key="SettingsEditor" timestamp="1603775421909">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="461" y="165" key="SettingsEditor/-3840.347.1536.848/0.0.1920.1040@0.0.1920.1040" timestamp="1603766412977" />
+    <state x="461" y="165" key="SettingsEditor/-3840.347.1536.848/0.0.1920.1040@0.0.1920.1040" timestamp="1603775421909" />
     <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1603766899542">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="552" y="253" key="Vcs.Push.Dialog.v2/-3840.347.1536.848/0.0.1920.1040@0.0.1920.1040" timestamp="1603766899542" />
+    <state x="674" y="308" key="git4idea.merge.GitPullDialog" timestamp="1603775583362">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="674" y="308" key="git4idea.merge.GitPullDialog/-3840.347.1536.848/0.0.1920.1040@0.0.1920.1040" timestamp="1603775583362" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1603382197848">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/-3840.347.1536.848/0.0.1920.1040@0.0.1920.1040" timestamp="1603382197848" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/main/python/assistant/InputParser.py</url>
+          <line>331</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
