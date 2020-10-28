@@ -1,14 +1,14 @@
 import os
 import glob
 from multipledispatch import dispatch
+from main.python.dependencies.Dependency import Dependency
 from main.python.dependencies.calendar.CalendarEventParser import CalendarEventParser
 from main.python.dependencies.calendar.CalendarEventWriter import CalendarEventWriter
 from main.python.dependencies.calendar.Event import Event
 from main.python.dependencies.calendar.Time import Time
 from main.python.assistant import Constants
 
-
-class Calendar:
+class Calendar(Dependency):
 
     calendars = {}
     currentCalendar = None
@@ -46,9 +46,6 @@ class Calendar:
     @staticmethod
     def getCalendars():
         return Calendar.calendars
-
-    def getName(self):
-        return self.filename
 
     def getEvents(self):
         self.readEvents()
@@ -116,9 +113,14 @@ class Calendar:
                 events.append(event)
         return events
 
-def initCalendars(memoryParser):
-    os.chdir(Constants.RESOURCE_DIRECTORY + "\\calendars")
-    for file in glob.glob("*.txt"):
-        file = file.split(".tx")[0]
-        Calendar(file)
-    Calendar.setCurrentCalendar(Calendar.calendars[memoryParser.searchMemory("defaultCalendar")])
+    @staticmethod
+    def init(memoryParser):
+        os.chdir(Constants.RESOURCE_DIRECTORY + "\\calendars")
+        for file in glob.glob("*.txt"):
+            file = file.split(".tx")[0]
+            Calendar(file)
+        Calendar.setCurrentCalendar(Calendar.calendars[memoryParser.searchMemory("defaultCalendar")])
+
+    @staticmethod
+    def getName():
+        return "Calendar"

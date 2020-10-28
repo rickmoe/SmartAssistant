@@ -1,7 +1,8 @@
 from time import sleep
+from main.python.dependencies.Dependency import Dependency
 from main.python.dependencies.timer.TimerTime import TimerTime
 
-class Timer:
+class Timer(Dependency):
 
     activeTimers = []
 
@@ -25,3 +26,11 @@ class Timer:
         Timer.activeTimers.remove(self)
         global stopThread
         stopThread = True
+
+    @staticmethod
+    def conclude(memoryParser):
+        [t.stopTimer() for t in Timer.activeTimers]
+
+    @staticmethod
+    def getName():
+        return "Timer"

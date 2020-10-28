@@ -1,7 +1,9 @@
 import pyttsx3 as pyTTS
 import speech_recognition as sr
+from main.python.dependencies.Dependency import Dependency
 
-class SmartAssistant:
+
+class SmartAssistant(Dependency):
 
     assistants = {}
     currentAssistant = None
@@ -54,11 +56,16 @@ class SmartAssistant:
         #    return input
         return input("input: ").lower()
 
-def initSmartAssistants(memoryParser):
-    for name in memoryParser.searchMemory("assistantNames"):
-        rate = memoryParser.searchMemory('{}SpeechRate'.format(name))
-        volume = memoryParser.searchMemory('{}Volume'.format(name))
-        voice = memoryParser.searchMemory('{}Voice'.format(name))
-        wakeWords = memoryParser.searchMemory('{}WakeWords'.format(name))
-        SmartAssistant(name, rate, volume, voice, wakeWords)
-    SmartAssistant.setCurrentAssistant(SmartAssistant.assistants[memoryParser.searchMemory("defaultAssistant")])
+    @staticmethod
+    def init(memoryParser):
+        for name in memoryParser.searchMemory("assistantNames"):
+            rate = memoryParser.searchMemory('{}SpeechRate'.format(name))
+            volume = memoryParser.searchMemory('{}Volume'.format(name))
+            voice = memoryParser.searchMemory('{}Voice'.format(name))
+            wakeWords = memoryParser.searchMemory('{}WakeWords'.format(name))
+            SmartAssistant(name, rate, volume, voice, wakeWords)
+        SmartAssistant.setCurrentAssistant(SmartAssistant.assistants[memoryParser.searchMemory("defaultAssistant")])
+
+    @staticmethod
+    def getName():
+        return "Smart Assistant"
