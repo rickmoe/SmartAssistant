@@ -2,22 +2,22 @@
 $defaultCalendar$       %my calendar.txt%
 $defaultAssistant$      %Dexter%
 // Storage
-$assistantNames$		%Dexter,Isabella,Jerry,Karen%
+$assistantNames$		[Jerry,Karen,Dexter,Isabella]
 // Assistant Data
-$DexterSpeechRate$      %150%
-$DexterVolume$      %1.0%
-$DexterVoice$       %0%
-$DexterWakeWords$       %dex,dexter%
-$IsabellaSpeechRate$        %175%
-$IsabellaVolume$        %1.0%
-$IsabellaVoice$     %1%
-$IsabellaWakeWords$     %isabella,izzy,bella%
-$JerrySpeechRate$		%300%
-$JerryVolume$		%1.0%
-$JerryVoice$		%0%
-$JerryWakeWords$		%jerry%
-$KarenSpeechRate$		%50%
-$KarenVolume$		%1.0%
-$KarenVoice$		%1%
-$KarenWakeWords$		%karen%
-// End// End
+$DexterSpeechRate$      #150#
+$DexterVolume$      #1.0#
+$DexterVoice$       #0#
+$DexterWakeWords$       {dex,dexter}
+$IsabellaSpeechRate$        #175#
+$IsabellaVolume$        #1.0#
+$IsabellaVoice$     #1#
+$IsabellaWakeWords$     {isabella,izzy,bella}
+$JerrySpeechRate$		#300#
+$JerryVolume$		#1.0#
+$JerryVoice$		#0#
+$JerryWakeWords$		{jerry}
+$KarenSpeechRate$		#50#
+$KarenVolume$		#1.0#
+$KarenVoice$		#1#
+$KarenWakeWords$		{karen}
+// End

@@ -60,19 +60,15 @@ class DependencyManager:
 
     @staticmethod
     def createAssistant(name, speechRate, volume, voice, wakeWords=None):
-        if wakeWords is None:
-            wakeWords = [name.lower()]
-        assist = SmartAssistant(name, speechRate, volume, voice, wakeWords)
-        a = DependencyManager.getAssistants()
+        assist = SmartAssistant.createAssistant(name, speechRate, volume, voice, wakeWords)
         assistList = []
-        for key in a:
+        for key in DependencyManager.getAssistants():
             assistList.append(key)
-        assistList.append(name)
         DependencyManager.changeInMemory("assistantNames", assistList)
-        DependencyManager.appendToMemorySection('{}SpeechRate'.format(name), speechRate, "Assistant Data")
-        DependencyManager.appendToMemorySection('{}Volume'.format(name), volume, "Assistant Data")
-        DependencyManager.appendToMemorySection('{}Voice'.format(name), voice, "Assistant Data")
-        DependencyManager.appendToMemorySection('{}WakeWords'.format(name), wakeWords, "Assistant Data")
+        DependencyManager.appendToMemorySection('{}SpeechRate'.format(name), assist.getSpeechRate(), "Assistant Data")
+        DependencyManager.appendToMemorySection('{}Volume'.format(name), assist.getVolume(), "Assistant Data")
+        DependencyManager.appendToMemorySection('{}Voice'.format(name), assist.getVoice(), "Assistant Data")
+        DependencyManager.appendToMemorySection('{}WakeWords'.format(name), assist.getWakeWords(), "Assistant Data")
 
     @staticmethod
     def delAssistant(name):

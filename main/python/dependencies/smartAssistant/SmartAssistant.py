@@ -28,9 +28,24 @@ class SmartAssistant(Dependency):
     def getAssistants():
         return SmartAssistant.assistants
 
+    @staticmethod
+    def createAssistant(name, speechRate, volume, voice, wakeWords=None):
+        if wakeWords is None:
+            wakeWords = {name.lower()}
+        return SmartAssistant(name, speechRate, volume, voice, wakeWords)
+
     def delAssistant(self):
         SmartAssistant.assistants.pop(self.name)
         del self
+
+    def getSpeechRate(self):
+        return self.rate
+
+    def getVolume(self):
+        return self.volume
+
+    def getVoice(self):
+        return self.voice
 
     def getWakeWords(self):
         return self.wakeWords

@@ -8,7 +8,6 @@ class MemoryWriter:
         self.memoryFile = memoryFile
 
     def addToMemory(self, key, values):
-        valString = MemoryWriter.extractValueString(values)
         needsNewLine = False
         os.chdir(Constants.RESOURCE_DIRECTORY + "\\memory")
         with io.open(self.memoryFile, 'r', encoding='utf-8') as file:
@@ -17,12 +16,9 @@ class MemoryWriter:
             if "\n" not in lines[len(lines) - 1]:
                 needsNewLine = True
         with io.open(self.memoryFile, 'a+', encoding='utf-8') as file:
-            if needsNewLine:
-                file.write("\n")
-            file.write('${}$\t\t%{}%'.format(key, valString))
+            MemoryWriter.writeToFile(file, key, values, newLineBefore=needsNewLine)
 
     def appendToSection(self, key, values, sectionName):
-        valString = MemoryWriter.extractValueString(values)
         os.chdir(Constants.RESOURCE_DIRECTORY + "\\memory")
         with io.open(self.memoryFile, 'r+', encoding='utf-8') as file:
             lines = file.readlines()
@@ -34,7 +30,7 @@ class MemoryWriter:
                     if "//" in i and sectionName in i:
                         atSection = True
                 elif "//" in i:
-                    file.write('${}$\t\t%{}%\n'.format(key, valString))
+                    MemoryWriter.writeToFile(file, key, values)
                     file.write(i)
                     atSection = False
                 else:
@@ -51,7 +47,6 @@ class MemoryWriter:
             file.truncate()
 
     def changeValue(self, key, values):
-        valString = MemoryWriter.extractValueString(values)
         os.chdir(Constants.RESOURCE_DIRECTORY + "\\memory")
         with io.open(self.memoryFile, 'r+', encoding='utf-8') as file:
             lines = file.readlines()
@@ -60,20 +55,27 @@ class MemoryWriter:
                 if '${}$'.format(key) not in i:
                     file.write(i)
                 else:
-                    file.write('${}$\t\t%{}%\n'.format(key, valString))
+                    MemoryWriter.writeToFile(file, key, values)
 
     @staticmethod
     def extractValueString(values):
-        string = ""
         try:
-            values.lower()
+            values.lower()                          #String
             string = str(values)
+            valType = "%%"
         except:
-            if "[" not in str(values):
+            if "[" in str(values):                  #List
+                string = ",".join(values).replace("'", "")
+                valType = "[]"
+            elif type(values) is set:               #Set
+                string = ",".join(values).replace("'", "")
+                valType = "{}"
+            else:                                   #Num
                 string = str(values)
-            else:
-                string = str(values[0])
-                for v in values:
-                    if v not in string:
-                        string += ',{}'.format(v)
-        return string
+                valType = "##"
+        return string, valType
+
+    @staticmethod
+    def writeToFile(file, key, values, newLineBefore=False, newLineAfter=True):
+        valString, valType = MemoryWriter.extractValueString(values)
+        file.write('{}${}$\t\t{}{}{}{}'.format("\n" if newLineBefore else "", key, valType[:1], valString, valType[1:], "\n" if newLineAfter else ""))
