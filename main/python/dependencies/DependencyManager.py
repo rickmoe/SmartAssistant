@@ -5,7 +5,6 @@ from main.python.dependencies.calendar.Calendar import Calendar
 from main.python.dependencies.smartAssistant.SmartAssistant import SmartAssistant
 from main.python.dependencies.timer.Timer import Timer
 from main.python.assistant import Constants
-import threading
 
 class DependencyManager:
 
@@ -21,6 +20,13 @@ class DependencyManager:
     def concludeDependencies():
         for dependency in ActiveDependencies:
             dependency.value.conclude(DependencyManager.getMemoryParser())
+
+    @staticmethod
+    def getDependency(dependency):
+        for d in ActiveDependencies:
+            if str(dependency).upper() == d.name:
+                return d.value
+        return None
 
     @staticmethod
     def getMemoryParser():
@@ -99,9 +105,3 @@ class DependencyManager:
     @staticmethod
     def appendToMemorySection(key, values, sectionName):
         MemoryWriter(Constants.MEMORY_FILE).appendToSection(key, values, sectionName)
-
-    @staticmethod
-    def startTimer(hours, minutes, seconds):
-        timer = Timer(hours, minutes, seconds)
-        t = threading.Thread(target=timer.startTimer)
-        t.start()

@@ -174,7 +174,7 @@ def parseInput(input, assistant):
                 assistant.say('could not find an assistant named {}'.format(name))
     elif "timer" in input:
         hours, minutes, seconds = promptTimerTime(assistant, input)
-        DependencyManager.startTimer(hours, minutes, seconds)
+        DependencyManager.getDependency('timer')(hours, minutes, seconds).startTimer()
         str = 'set a timer for {}{} {} {}{} {} {}{}.'.format((hours + " hour") if int(hours) != 0 else "", "s" if (int(hours) != 1 and int(hours) != 0) else "",
                 "and" if int(hours) != 0 and int(minutes) != 0 and int(seconds == 0) else "",
                 (minutes + " minute") if int(minutes) != 0 else "", "s" if (int(minutes) != 1 and int(minutes) != 0) else "",

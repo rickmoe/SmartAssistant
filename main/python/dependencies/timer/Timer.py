@@ -1,31 +1,34 @@
+import threading
 from time import sleep
 from main.python.dependencies.Dependency import Dependency
 from main.python.dependencies.timer.TimerTime import TimerTime
 
 class Timer(Dependency):
 
-    activeTimers = []
+    activeTimers = set()
 
     def __init__(self, hours, minutes, seconds):
         self.time = TimerTime(hours, minutes, seconds)
-        global stopThread
+        self.stopThread = False
 
     def startTimer(self):
-        global stopThread
-        stopThread = False
-        Timer.activeTimers.append(self)
+        t = threading.Thread(target=self.runTimer)
+        Timer.activeTimers.add(self)
+        self.stopThread = False
+        t.start()
+
+    def runTimer(self):
         while not self.time.isDone():
             sleep(1)
             self.time.subtractTime(0, 0, 1)
-            if stopThread:
+            if self.stopThread:
                 return
         print("Done!")
         Timer.activeTimers.remove(self)
 
     def stopTimer(self):
         Timer.activeTimers.remove(self)
-        global stopThread
-        stopThread = True
+        self.stopThread = True
 
     @staticmethod
     def conclude(memoryParser):
