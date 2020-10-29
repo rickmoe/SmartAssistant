@@ -12,9 +12,9 @@ DependencyManager.initDependencies()
 powered = True
 while powered:
     woke = False
-    userInput = DependencyManager.getCurrentAssistant().getAudio()
+    userInput = DependencyManager.getDependency('smart_assistant').getCurrentAssistant().getAudio()
     if userInput is not None:
-        if any(wake in userInput for wake in DependencyManager.getCurrentAssistant().getWakeWords()):
-            powered = InputParser.parseInput(userInput, DependencyManager.getCurrentAssistant())
+        if any(wake in userInput for wake in DependencyManager.getDependency('smart_assistant').getCurrentAssistant().getWakeWords()):
+            powered = InputParser.parseInput(userInput, DependencyManager.getDependency('smart_assistant').getCurrentAssistant())
 
 DependencyManager.concludeDependencies()

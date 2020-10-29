@@ -14,7 +14,7 @@ def parseInput(input, assistant):
     elif ("what's the time" in input) or ("what is the time" in input) or ("what time is it" in input):
         assistant.say('it\'s currently {}'.format(Time.getCurrentTime().getTime()))
     elif "event" in input or "calendar" in input:
-        calendar = DependencyManager.getCurrentCalendar()
+        calendar = DependencyManager.getDependency('calendar').getCurrentCalendar()
         if "what" in input or "how many" in input:
             if "today" in input:
                 t = Time.getCurrentTime()
@@ -95,7 +95,7 @@ def parseInput(input, assistant):
                     assistant.say('added {} to your calendar at {} on {}'.format(title, t.getTime(), t.getDate()))
             else:
                 calendarName = promptCalendarTitle(assistant)
-                DependencyManager.createCalendar(calendarName)
+                DependencyManager.getDependency('calendar')(calendarName)
                 assistant.say('created a new calendar called {}'.format(calendarName))
         elif "delete" in input or "remove" in input or "cancel" in input:
             if "event" in input:
@@ -131,25 +131,24 @@ def parseInput(input, assistant):
             else:
                 calendarName = promptCalendarTitle(assistant)
                 try:
-                    DependencyManager.getCalendars()['{}.txt'.format(calendarName)].delCalendar()
+                    DependencyManager.getDependency('calendar').getCalendars()['{}.txt'.format(calendarName)].delCalendar()
                     assistant.say('deleted {}'.format(calendarName))
                 except:
                     assistant.say('could not find a calendar named {}'.format(calendarName))
         elif "set" in input or "switch" in input:
             calendarName = input.split(" to ")[1]
             try:
-                DependencyManager.setCurrentCalendar('{}.txt'.format(calendarName))
+                DependencyManager.getDependency('calendar').setCurrentCalendar('{}.txt'.format(calendarName))
                 assistant.say('set the current calendar to {}'.format(calendarName))
             except:
                 assistant.say('could not find a calendar named {}'.format(calendarName))
-
     elif "assistant" in input:
         if "set" in input or "switch" in input:
             assistantName = input.split(" to ")[1]
             try:
-                DependencyManager.setCurrentAssistant(assistantName)
+                DependencyManager.getDependency('smart_assistant').setCurrentAssistant(assistantName)
                 assistant.say("ok. goodbye.")
-                DependencyManager.getCurrentAssistant().say("hello, i'm {}.".format(assistantName))
+                DependencyManager.getDependency('smart_assistant').getCurrentAssistant().say("hello, i'm {}.".format(assistantName))
             except:
                 assistant.say('i couldn\'t find an assistant named {}'.format(assistantName))
         elif "add" in input or "create" in input or "make" in input:
@@ -162,13 +161,13 @@ def parseInput(input, assistant):
             volume = convertRange(volume, 0, 10, Constants.ASSISTANT_MIN_VOLUME, Constants.ASSISTANT_MAX_VOLUME)
             assistant.say("do you want them to have a male or female voice? say 0 for male and 1 for female.")
             voice = max(0, min(1, promptNum(assistant.getAudio(), assistant)))
-            DependencyManager.createAssistant(name, speechRate, volume, voice)
+            DependencyManager.getDependency('smart_assistant').createAssistant(DependencyManager.getDependency('memory')(Constants.MEMORY_FILE), name, speechRate, volume, voice)
             assistant.say('done! say hello {}.'.format(name))
-            DependencyManager.getAssistants()[name].say('hello, i am {}, your personal assistant.'.format(name))
+            DependencyManager.getDependency('smart_assistant').getAssistants()[name].say('hello, i am {}, your personal assistant.'.format(name))
         elif "delete" in input:
             name = promptAssistantName(input, assistant)
             try:
-                DependencyManager.delAssistant(name)
+                DependencyManager.getDependency('smart_assistant').delAssistant(DependencyManager.getDependency('memory')(Constants.MEMORY_FILE), name)
                 assistant.say('successfully deleted {}'.format(name))
             except:
                 assistant.say('could not find an assistant named {}'.format(name))

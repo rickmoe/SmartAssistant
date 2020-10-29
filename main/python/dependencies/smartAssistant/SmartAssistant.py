@@ -17,8 +17,8 @@ class SmartAssistant(Dependency):
         SmartAssistant.assistants[name] = self
 
     @staticmethod
-    def setCurrentAssistant(assistant):
-        SmartAssistant.currentAssistant = assistant
+    def setCurrentAssistant(assistantName):
+        SmartAssistant.currentAssistant = SmartAssistant.assistants[assistantName.title()]
 
     @staticmethod
     def getCurrentAssistant():
@@ -29,14 +29,32 @@ class SmartAssistant(Dependency):
         return SmartAssistant.assistants
 
     @staticmethod
-    def createAssistant(name, speechRate, volume, voice, wakeWords=None):
+    def createAssistant(memory, name, speechRate, volume, voice, wakeWords=None):
         if wakeWords is None:
             wakeWords = {name.lower()}
-        return SmartAssistant(name, speechRate, volume, voice, wakeWords)
+        assist = SmartAssistant(name, speechRate, volume, voice, wakeWords)
+        assistList = []
+        for name in SmartAssistant.getAssistants():
+            assistList.append(name)
+        memory.changeInMemory("assistantNames", assistList)
+        memory.appendToMemorySection('{}SpeechRate'.format(name), assist.getSpeechRate(), "Assistant Data")
+        memory.appendToMemorySection('{}Volume'.format(name), assist.getVolume(), "Assistant Data")
+        memory.appendToMemorySection('{}Voice'.format(name), assist.getVoice(), "Assistant Data")
+        memory.appendToMemorySection('{}WakeWords'.format(name), assist.getWakeWords(), "Assistant Data")
 
-    def delAssistant(self):
-        SmartAssistant.assistants.pop(self.name)
-        del self
+    @staticmethod
+    def delAssistant(memory, name):
+        assist = SmartAssistant.assistants[name]
+        SmartAssistant.assistants.pop(name)
+        del assist
+        assistList = []
+        for name in SmartAssistant.getAssistants():
+            assistList.append(name)
+        memory.changeInMemory("assistantNames", assistList)
+        memory.deleteFromMemory('{}SpeechRate'.format(name))
+        memory.deleteFromMemory('{}Volume'.format(name))
+        memory.deleteFromMemory('{}Voice'.format(name))
+        memory.deleteFromMemory('{}WakeWords'.format(name))
 
     def getSpeechRate(self):
         return self.rate
@@ -59,8 +77,8 @@ class SmartAssistant(Dependency):
         engine.runAndWait()
 
     def getAudio(self):
-        #r = sr.Recognizer()
-        #with sr.Microphone() as source:
+        # r = sr.Recognizer()
+        # with sr.Microphone() as source:
         #    audio = r.listen(source)
         #    input = ""
         #    try:
@@ -72,14 +90,14 @@ class SmartAssistant(Dependency):
         return input("input: ").lower()
 
     @staticmethod
-    def init(memoryParser):
-        for name in memoryParser.searchMemory("assistantNames"):
-            rate = memoryParser.searchMemory('{}SpeechRate'.format(name))
-            volume = memoryParser.searchMemory('{}Volume'.format(name))
-            voice = memoryParser.searchMemory('{}Voice'.format(name))
-            wakeWords = memoryParser.searchMemory('{}WakeWords'.format(name))
+    def init(memory):
+        for name in memory.searchMemory("assistantNames"):
+            rate = memory.searchMemory('{}SpeechRate'.format(name))
+            volume = memory.searchMemory('{}Volume'.format(name))
+            voice = memory.searchMemory('{}Voice'.format(name))
+            wakeWords = memory.searchMemory('{}WakeWords'.format(name))
             SmartAssistant(name, rate, volume, voice, wakeWords)
-        SmartAssistant.setCurrentAssistant(SmartAssistant.assistants[memoryParser.searchMemory("defaultAssistant")])
+        SmartAssistant.setCurrentAssistant(memory.searchMemory("defaultAssistant"))
 
     @staticmethod
     def getName():

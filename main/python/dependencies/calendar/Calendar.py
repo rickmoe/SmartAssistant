@@ -36,8 +36,8 @@ class Calendar(Dependency):
             os.remove(self.filename)
 
     @staticmethod
-    def setCurrentCalendar(calendar):
-        Calendar.currentCalendar = calendar
+    def setCurrentCalendar(calendarName):
+        Calendar.currentCalendar = Calendar.calendars[calendarName]
 
     @staticmethod
     def getCurrentCalendar():
@@ -114,12 +114,12 @@ class Calendar(Dependency):
         return events
 
     @staticmethod
-    def init(memoryParser):
+    def init(memory):
         os.chdir(Constants.RESOURCE_DIRECTORY + "\\calendars")
         for file in glob.glob("*.txt"):
             file = file.split(".tx")[0]
             Calendar(file)
-        Calendar.setCurrentCalendar(Calendar.calendars[memoryParser.searchMemory("defaultCalendar")])
+        Calendar.setCurrentCalendar(memory.searchMemory("defaultCalendar"))
 
     @staticmethod
     def getName():

@@ -1,11 +1,11 @@
 class Dependency:
 
     @staticmethod
-    def init(memoryParser):
+    def init(memory):
         pass
 
     @staticmethod
-    def conclude(memoryParser):
+    def conclude(memory):
         pass
 
     @staticmethod
