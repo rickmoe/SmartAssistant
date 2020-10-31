@@ -42,7 +42,7 @@ class MemoryWriter:
             lines = file.readlines()
             file.seek(0)
             for i in lines:
-                if '${}$'.format(key) not in i:
+                if '${}$'.format(key) not in i and "//\n" != i:
                     file.write(i)
             file.truncate()
 

@@ -19,3 +19,10 @@ class DependencyManager:
             if str(dependency).upper() == d.name:
                 return d.value
         return None
+
+    @staticmethod
+    def getDependencies():
+        dependencies = {}
+        for d in ActiveDependencies:
+            dependencies[d.name.lower()] = d.value
+        return dependencies

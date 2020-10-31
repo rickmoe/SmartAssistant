@@ -1,6 +1,6 @@
 // Defaults
-$defaultCalendar$       %my calendar.txt%
-$defaultAssistant$      %Dexter%
+$defaultCalendar$		%my calendar.txt%
+$defaultAssistant$		%Dexter%
 // Storage
 $assistantNames$		[Jerry,Karen,Dexter,Isabella]
 // Assistant Data
@@ -20,4 +20,4 @@ $KarenSpeechRate$		#50#
 $KarenVolume$		#1.0#
 $KarenVoice$		#1#
 $KarenWakeWords$		{karen}
-// End
+//

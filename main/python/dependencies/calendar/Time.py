@@ -129,8 +129,6 @@ class Time:
         self.setDay(self.getDay() + days + int(self.getHour() / 24))
         self.setHour(self.getHour() % 24)
         while self.getDay() > (Constants.DAYS_IN_MONTH_LEAP if self.isLeapYear() else Constants.DAYS_IN_MONTH_NON_LEAP)[self.getMonth() - 1]:
-            print('{} || {}'.format(self.getDay(), (
-                Constants.DAYS_IN_MONTH_LEAP if self.isLeapYear() else Constants.DAYS_IN_MONTH_NON_LEAP)[self.getMonth() - 1]))
             deltaDays = (Constants.DAYS_IN_MONTH_LEAP if self.isLeapYear() else Constants.DAYS_IN_MONTH_NON_LEAP)[self.getMonth() - 1]
             self.setMonth(self.getMonth() + 1)
             self.setDay(self.getDay() - deltaDays)

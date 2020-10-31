@@ -10,8 +10,8 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c8126b4c-ef74-4126-974d-a730ebb14ad3" name="Default Changelist" comment="Added The Ability To Reference Dependency Classes and Functions Through The DependencyManager">
-      <change afterPath="$PROJECT_DIR$/main/python/dependencies/memory/Memory.py" afterDir="false" />
+    <list default="true" id="c8126b4c-ef74-4126-974d-a730ebb14ad3" name="Default Changelist" comment="Continued Moving Methods From DependencyManager to Dependencies for Modularity and Bug Fixes">
+      <change afterPath="$PROJECT_DIR$/main/python/assistant/BaseDependency.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/python/assistant/InputParser.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/python/assistant/InputParser.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/python/assistant/Main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/python/assistant/Main.py" afterDir="false" />
@@ -19,8 +19,12 @@
       <change beforePath="$PROJECT_DIR$/main/python/dependencies/Dependency.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/python/dependencies/Dependency.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/python/dependencies/DependencyManager.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/python/dependencies/DependencyManager.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/python/dependencies/calendar/Calendar.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/python/dependencies/calendar/Calendar.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/python/dependencies/memory/MemoryParser.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/python/dependencies/memory/MemoryParser.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/python/dependencies/calendar/Time.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/python/dependencies/calendar/Time.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/python/dependencies/memory/MemoryWriter.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/python/dependencies/memory/MemoryWriter.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main/python/dependencies/smartAssistant/SmartAssistant.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/python/dependencies/smartAssistant/SmartAssistant.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/python/dependencies/timer/Timer.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/python/dependencies/timer/Timer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/calendars/my calendar.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resources/calendars/my calendar.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/memory/Memory.txt" beforeDir="false" afterPath="$PROJECT_DIR$/resources/memory/Memory.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,8 +57,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\cosmi\PycharmProjects\SmartAssistant\main\python\dependencies" />
       <recent name="C:\Users\cosmi\PycharmProjects\SmartAssistant\main\python\assistant" />
+      <recent name="C:\Users\cosmi\PycharmProjects\SmartAssistant\main\python\dependencies" />
       <recent name="C:\Users\cosmi\PycharmProjects\SmartAssistant\main\python\dependencies\memory" />
       <recent name="C:\Users\cosmi\PycharmProjects\SmartAssistant\main\python\dependencies\smart assistant" />
       <recent name="C:\Users\cosmi\PycharmProjects\SmartAssistant\main\python\dependencies\calendar" />
@@ -122,7 +126,14 @@
       <option name="project" value="LOCAL" />
       <updated>1603954953224</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Moved Methods From DependencyManager to individual Dependencies for Modularity">
+      <created>1603959864952</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1603959864952</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -142,7 +153,9 @@
     <MESSAGE value="Setup Dependency Template" />
     <MESSAGE value="Changed Memory System To Utilize Data Types" />
     <MESSAGE value="Added The Ability To Reference Dependency Classes and Functions Through The DependencyManager" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added The Ability To Reference Dependency Classes and Functions Through The DependencyManager" />
+    <MESSAGE value="Moved Methods From DependencyManager to individual Dependencies for Modularity" />
+    <MESSAGE value="Continued Moving Methods From DependencyManager to Dependencies for Modularity and Bug Fixes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Continued Moving Methods From DependencyManager to Dependencies for Modularity and Bug Fixes" />
   </component>
   <component name="WindowStateProjectService">
     <state x="414" y="175" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1603081371694">
@@ -157,22 +170,22 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="740" y="275" key="FileChooserDialogImpl/-3840.347.1536.848/0.0.1920.1040@0.0.1920.1040" timestamp="1603081336933" />
-    <state width="1899" height="226" key="GridCell.Tab.0.bottom" timestamp="1603959707526">
+    <state width="1899" height="226" key="GridCell.Tab.0.bottom" timestamp="1604127517629">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="226" key="GridCell.Tab.0.bottom/-3840.347.1536.848/0.0.1920.1040@0.0.1920.1040" timestamp="1603959707526" />
-    <state width="1899" height="226" key="GridCell.Tab.0.center" timestamp="1603959707525">
+    <state width="1899" height="226" key="GridCell.Tab.0.bottom/-3840.347.1536.848/0.0.1920.1040@0.0.1920.1040" timestamp="1604127517629" />
+    <state width="1899" height="226" key="GridCell.Tab.0.center" timestamp="1604127517629">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="226" key="GridCell.Tab.0.center/-3840.347.1536.848/0.0.1920.1040@0.0.1920.1040" timestamp="1603959707525" />
-    <state width="1899" height="226" key="GridCell.Tab.0.left" timestamp="1603959707525">
+    <state width="1899" height="226" key="GridCell.Tab.0.center/-3840.347.1536.848/0.0.1920.1040@0.0.1920.1040" timestamp="1604127517629" />
+    <state width="1899" height="226" key="GridCell.Tab.0.left" timestamp="1604127517629">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="226" key="GridCell.Tab.0.left/-3840.347.1536.848/0.0.1920.1040@0.0.1920.1040" timestamp="1603959707525" />
-    <state width="1899" height="226" key="GridCell.Tab.0.right" timestamp="1603959707525">
+    <state width="1899" height="226" key="GridCell.Tab.0.left/-3840.347.1536.848/0.0.1920.1040@0.0.1920.1040" timestamp="1604127517629" />
+    <state width="1899" height="226" key="GridCell.Tab.0.right" timestamp="1604127517629">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1899" height="226" key="GridCell.Tab.0.right/-3840.347.1536.848/0.0.1920.1040@0.0.1920.1040" timestamp="1603959707525" />
+    <state width="1899" height="226" key="GridCell.Tab.0.right/-3840.347.1536.848/0.0.1920.1040@0.0.1920.1040" timestamp="1604127517629" />
     <state width="1899" height="348" key="GridCell.Tab.1.bottom" timestamp="1603232394185">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -193,21 +206,21 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="165" key="SettingsEditor/-3840.347.1536.848/0.0.1920.1040@0.0.1920.1040" timestamp="1603775421909" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1603954986948">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2" timestamp="1603959885944">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/-3840.347.1536.848/0.0.1920.1040@0.0.1920.1040" timestamp="1603954986948" />
-    <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1603957054400">
+    <state x="552" y="253" key="Vcs.Push.Dialog.v2/-3840.347.1536.848/0.0.1920.1040@0.0.1920.1040" timestamp="1603959885944" />
+    <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1604042996467">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-3840.347.1536.848/0.0.1920.1040@0.0.1920.1040" timestamp="1603957054400" />
+    <state x="769" y="434" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/-3840.347.1536.848/0.0.1920.1040@0.0.1920.1040" timestamp="1604042996467" />
     <state x="674" y="308" key="git4idea.merge.GitPullDialog" timestamp="1603775583362">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="674" y="308" key="git4idea.merge.GitPullDialog/-3840.347.1536.848/0.0.1920.1040@0.0.1920.1040" timestamp="1603775583362" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1603947440031">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1604126042580">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/-3840.347.1536.848/0.0.1920.1040@0.0.1920.1040" timestamp="1603947440031" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/-3840.347.1536.848/0.0.1920.1040@0.0.1920.1040" timestamp="1604126042580" />
   </component>
 </project>

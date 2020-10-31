@@ -7,14 +7,9 @@ DependencyManager.initDependencies()
 # print({v for v in vals if v in string})
 # print([v for v in vals if v in string])
 
-# DependencyManager.getDependency('timer').getName()
-
-powered = True
-while powered:
-    woke = False
+while DependencyManager.getDependency('base').getPowered():
     userInput = DependencyManager.getDependency('smart_assistant').getCurrentAssistant().getAudio()
-    if userInput is not None:
-        if any(wake in userInput for wake in DependencyManager.getDependency('smart_assistant').getCurrentAssistant().getWakeWords()):
-            powered = InputParser.parseInput(userInput, DependencyManager.getDependency('smart_assistant').getCurrentAssistant())
+    if userInput is not None and any(wake in userInput for wake in DependencyManager.getDependency('smart_assistant').getCurrentAssistant().getWakeWords()):
+        InputParser.parseInput(userInput, DependencyManager.getDependency('smart_assistant').getCurrentAssistant())
 
 DependencyManager.concludeDependencies()
